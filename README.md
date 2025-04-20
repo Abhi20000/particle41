@@ -33,19 +33,19 @@ To get started with this project, you'll need to follow these steps:
    
    docker run -p 8000:8000 <image-id>
    
-   ## Application will be acessible on <ip>:8000 in browser
+   ## Application will be accessible on <ip>:8000 in browser
 
 
 ## Terraform
 
 This include the terraform script to create the needed infra on AWS cloud.
 Befor running the script please make sure to configure below things.
-1) Configure AWS credentilas in your system where you are running this script. Either with aws configure command else set credential as environment value. For example on windows:- 
+1) Configure AWS credentials in your system where you are running this script. Either with aws configure command else set credential as environment value. For example on windows:- 
 `set AWS_ACCESS_KEY_ID=your-access-key-id`
 `set AWS_SECRET_ACCESS_KEY=your-secret-access-key`
 `set AWS_DEFAULT_REGION=us-east-1`
 Make sure the credentials have the necessay permission needed. For testing purpose yoou can grant Admin access (This is not recommanded). 
-2) Inside `modules/ecs/main.tf` file `image = "abhisheksingh2000/particle41:task"` is  being used. You can leave it same application will work file else if you have updated image you can replace it.
+2) Inside `modules/ecs/main.tf` file `image = "abhisheksingh2000/particle41:task"` is used. You can leave it same application will work file else if you have updated image you can replace it.
 3) "backend.tf" As backend.tf is already present, terraform init will try to use the remote backend right away.
 
 
@@ -90,11 +90,11 @@ terraform apply
 
 ## Pipeline(CI/CD)
 
-Bitbucket pipeline is being used for the CI/CD.
+Bitbucket pipeline is used for the CI/CD.
 
 # Configure credentials for CI/CD
 `Repository settings > Repository variables`
-Add the following variables with AWS credentilas:
+Add the following variables with AWS credentials:
 
 ```bash
 AWS_ACCESS_KEY_ID
