@@ -22,7 +22,7 @@ RUN chown -R abhishek:abhishek /app
 USER abhishek
 
 # Expose the port Flask runs on
-EXPOSE 5000
+EXPOSE 8000
 
 # Run the Flask app
 CMD ["python", "simple_time_service.py"]

@@ -1,0 +1,21 @@
+image: atlassian/default-image:2  # Base Docker image with pre-installed tools
+
+pipelines:
+  default:
+    - step:
+        name: "Build and Push Docker Image"
+        script:
+          - echo "Building Docker image..."
+          - docker build -t abhisheksingh2000/particle41:task -f app/Dockerfile .  # Point to the Dockerfile in 'app' folder
+          - echo "Pushing Docker image to ECR..."
+          - docker push abhisheksingh2000/particle41:task
+
+    - step:
+        name: "Terraform Apply"
+        image: hashicorp/terraform:latest  # Using the official Terraform image
+        script:
+          - echo "Initializing Terraform..."
+          - cd terraform  # Navigate to terraform folder
+          - terraform init
+          - echo "Applying Terraform changes..."
+          - terraform apply -auto-approve
