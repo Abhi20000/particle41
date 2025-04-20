@@ -22,12 +22,17 @@ To get started with this project, you'll need to follow these steps:
    git clone https://github.com/Abhi20000/particle41.git
 
 2. Navigate into the project directory:
+   ```bash
    cd app
 
-3. Build and run Docker application
+4. Build and run Docker application
+   ```bash
    docker build -t <image-name> .
+   
    docker push
+   
    docker run -p 8000:8000 <image-id>
+   
    ## Application will be acessible on <ip>:8000 in browser
 
 
@@ -36,11 +41,11 @@ To get started with this project, you'll need to follow these steps:
 This include the terraform script to create the needed infra on AWS cloud.
 Befor running the script please make sure to configure below things.
 1) Configure AWS credentilas in your system where you are running this script. Either with aws configure command else set credential as environment value. For example on windows:- 
-set AWS_ACCESS_KEY_ID=your-access-key-id
-set AWS_SECRET_ACCESS_KEY=your-secret-access-key
-set AWS_DEFAULT_REGION=us-east-1
+`set AWS_ACCESS_KEY_ID=your-access-key-id`
+`set AWS_SECRET_ACCESS_KEY=your-secret-access-key`
+`set AWS_DEFAULT_REGION=us-east-1`
 Make sure the credentials have the necessay permission needed. For testing purpose yoou can grant Admin access (This is not recommanded). 
-2) Inside modules/ecs/main.tf file <image = "abhisheksingh2000/particle41:task"> is  being used. You can leave it same application will work file else if you have updated image you can replace it.
+2) Inside `modules/ecs/main.tf` file `image = "abhisheksingh2000/particle41:task"` is  being used. You can leave it same application will work file else if you have updated image you can replace it.
 3) "backend.tf" As backend.tf is already present, terraform init will try to use the remote backend right away.
 
 
@@ -50,21 +55,27 @@ To get started with this project, you'll need to follow these steps:
    cd terraform
 
 2)  Creating infra
-------Temporarily remove backend.tf-------
-mv backend.tf backend.tf.disabled
+```bash
+## temporarily remove backend.tf 
 
+mv backend.tf backend.tf.disabled
+```
+
+```bash
 terraform init
 terraform apply (type "yes" in "Enter a value")
+```
 
 3) Access application
-In second step you will get load-balancer endpoint as output. Open it in browser to access the application. Make sure it should be http://<load-balancer-endpoint>
+In second step you will get load-balancer endpoint as output. Open it in browser to access the application. Make sure it should be `http://<load-balancer-endpoint>`
 
 4) Backend Remote state
 
+```bash
 mv backend.tf.disabled backend.tf
-
 terraform init
 terraform apply
+```
 
 # Running the terraform script will create the following infra in AWS
 
@@ -82,12 +93,14 @@ terraform apply
 Bitbucket pipeline is being used for the CI/CD.
 
 # Configure credentials for CI/CD
-Repository settings > Repository variables
+`Repository settings > Repository variables`
 Add the following variables with AWS credentilas:
 
+```bash
 AWS_ACCESS_KEY_ID
 AWS_SECRET_ACCESS_KEY
 (Optionally) AWS_DEFAULT_REGION
+```
 
 Run the pipeline in bitbucket it will apply the necessary changes
 
